@@ -1,0 +1,16 @@
+export { HeroSection } from "./hero";
+export { WhyChooseUs } from "./why-choose-us";
+export { MembershipPlans } from "./membership-plans";
+export { Trainers } from "./trainers";
+export { Gallery } from "./gallery";
+export { Testimonials } from "./testimonials";
+export { BmiCalculator } from "./bmi-calculator";
+export { Programs } from "./programs";
+export { Facilities } from "./facilities";
+export { ClassSchedule } from "./class-schedule";
+export { TrainersCta } from "./trainers-cta";
+export { PricingCta } from "./pricing-cta";
+export { GoogleReviews } from "./google-reviews";
+export { Faq } from "./faq";
+export { Contact } from "./contact";
+export { Blogs, NutritionTips } from "./blogs-nutrition";

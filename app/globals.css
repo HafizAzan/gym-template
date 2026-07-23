@@ -1,26 +1,187 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #141414;
+  --muted: #a1a1aa;
+  --gold: #d4af37;
+  --gold-light: #f5e6a3;
+  --gold-dark: #c9a227;
+  --border: #262626;
+  --section-alt: #0f0f0f;
+}
+
+html.light {
+  --background: #f6f4ef;
+  --foreground: #111111;
+  --card: #ffffff;
+  --muted: #52525b;
+  --gold: #b8962e;
+  --gold-light: #d4af37;
+  --gold-dark: #8a7020;
+  --border: #e4e4e7;
+  --section-alt: #efece4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-border: var(--border);
+  --color-section-alt: var(--section-alt);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --animate-accordion-down: accordion-down 0.35s ease-out;
+  --animate-accordion-up: accordion-up 0.3s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display), Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f5e6a3 0%, #d4af37 45%, #a8872a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-section-alt {
+  background: var(--section-alt);
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* Reliable Radix accordion transitions (works even if utility classes miss) */
+[data-slot="accordion-content"][data-state="open"] {
+  animation: accordion-down 0.35s ease-out;
+}
+
+[data-slot="accordion-content"][data-state="closed"] {
+  animation: accordion-up 0.3s ease-out;
+}
+
+html.light body {
+  color: var(--foreground);
+}
+
+html.light .text-white {
+  color: #111111;
+}
+
+html.light .text-zinc-200,
+html.light .text-zinc-300,
+html.light .text-zinc-400 {
+  color: #3f3f46;
+}
+
+html.light .bg-black\/70,
+html.light .bg-black\/80,
+html.light .bg-black\/90,
+html.light .bg-black\/95 {
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+html.light header.fixed {
+  color: #111;
+}
+
+/* Hide number input spinner arrows (Chrome, Safari, Edge, Firefox) */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Themed native select options */
+select option {
+  background-color: #141414;
+  color: #fafafa;
 }
